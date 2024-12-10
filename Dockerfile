@@ -17,7 +17,7 @@ RUN mix deps.get
 COPY . .
 
 RUN mix compile
-RUN MIX_ENV=prod mix release
+RUN MIX_ENV=dev mix release
 
 RUN apk update && apk add --no-cache libstdc++ postgresql-client
 

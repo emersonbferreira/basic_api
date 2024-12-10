@@ -13,7 +13,7 @@ config :basic_api,
 
 config :basic_api, BasicApi.Models.Guardian,
   issuer: "basic_api",
-  secret_key: "abuNKdvJmQ38fpYZaz6Lw0Ay446yR0i0pi2aSKuy+bkuZbWfd4T0JSumYmCkQ20N"
+  secret_key: "hCs8Z6QcQSHrKKIcIap9VXex5MlaJIzrMwpw3k29zAGPjCW4EPJulLY2k4bWmslS"
 
 # Configures the endpoint
 config :basic_api, BasicApiWeb.Endpoint,
@@ -25,6 +25,13 @@ config :basic_api, BasicApiWeb.Endpoint,
   ],
   pubsub_server: BasicApi.PubSub,
   live_view: [signing_salt: "8MXk+c90"]
+
+#Database
+config :basic_api, BasicApi.Repo,
+  url: System.get_env("DATABASE_URL"),
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
 
 # Configures the mailer
 #

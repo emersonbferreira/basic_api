@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  web:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,7 +9,7 @@ services:
       - "4000:4000"
     environment:
       - DATABASE_URL=ecto://postgres:postgres@postgres:5432/basic_api_dev
-      - MIX_ENV=prod
+      - MIX_ENV=dev
     depends_on:
       - postgres
     networks:
