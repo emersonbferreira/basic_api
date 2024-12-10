@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # Serviço da aplicação Elixir
   web:
     build:
       context: .
@@ -15,9 +14,8 @@ services:
       - postgres
     networks:
       - basic-api-network
-    command: ["bin/basic_api", "start"]
+    command: ["mix", "phx.server"]
 
-  # Serviço do PostgreSQL
   postgres:
     image: postgres:15-alpine
     environment:
