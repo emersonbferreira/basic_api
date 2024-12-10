@@ -1,4 +1,4 @@
-defmodule BasicApi.Repo.Migrations.AddUsersTable do
+defmodule BasicApi.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do
@@ -6,9 +6,10 @@ defmodule BasicApi.Repo.Migrations.AddUsersTable do
       add :name, :string
       add :email, :string
       add :password_hash, :string
-      add: enabled, :bool
+      add :enabled, :boolean, default: true
 
-      timestamps()
+      timestamps(type: :utc_datetime)
+    end
   end
 
   create unique_index(:users, [:email])

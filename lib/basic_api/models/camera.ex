@@ -1,22 +1,23 @@
 defmodule BasicApi.Models.Camera do
   use Ecto.Schema
   import Ecto.Changeset
-    
+
   alias BasicApi.Models.User
 
-  schema "camera" do
+  schema "cameras" do
+    field :enabled, :boolean, default: true
     field :name, :string
     field :brand, :string
-    field :enabled, :bool
-    field :desabled_at, :timestamp, default: nil
-    
-    timestamps()
+    field :desabled_at, :utc_datetime, default: nil
+
+    timestamps(type: :utc_datetime)
 
     belongs_to :users, User
   end
 
-  def changeset(user, attrs) do
-    user
+  def changeset(camera, attrs) do
+    camera
     |> cast(attrs, [:name, :brand, :enabled])
+    |> validate_required([:name, :brand, :enabled])
   end
 end

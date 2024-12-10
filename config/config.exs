@@ -11,6 +11,10 @@ config :basic_api,
   ecto_repos: [BasicApi.Repo],
   generators: [timestamp_type: :utc_datetime]
 
+config :basic_api, BasicApi.Models.Guardian,
+  issuer: "basic_api",
+  secret_key: "abuNKdvJmQ38fpYZaz6Lw0Ay446yR0i0pi2aSKuy+bkuZbWfd4T0JSumYmCkQ20N"
+
 # Configures the endpoint
 config :basic_api, BasicApiWeb.Endpoint,
   url: [host: "localhost"],
