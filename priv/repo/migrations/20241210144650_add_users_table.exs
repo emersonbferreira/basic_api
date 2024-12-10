@@ -6,7 +6,7 @@ defmodule BasicApi.Repo.Migrations.AddUsersTable do
       add :name, :string
       add :email, :string
       add :password_hash, :string
-      add: enabled, :string
+      add: enabled, :bool
 
       timestamps()
   end
