@@ -9,11 +9,10 @@ defmodule BasicApi.Models.Camera do
     field :name, :string
     field :brand, :string
     field :desabled_at, :utc_datetime, default: nil
-    field :user_id
 
     timestamps(type: :utc_datetime)
 
-    belongs_to :users, User
+    belongs_to :user, User
   end
 
   def changeset(camera, attrs) do

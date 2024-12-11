@@ -1,11 +1,14 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     BasicApi.Repo.insert!(%BasicApi.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias BasicApi.Repo
+alias BasicApi.Models.User
+alias BasicApi.Helpers.SeedHelper
+
+case Repo.all(User) do
+  [] ->
+    SeedHelper.create_users()
+    SeedHelper.create_cameras_for_users()
+
+    IO.puts("Seed data successfully created!")
+
+  _ ->
+    IO.puts("Seed data already exists")
+end

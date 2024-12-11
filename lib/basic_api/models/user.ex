@@ -4,11 +4,13 @@ defmodule BasicApi.Models.User do
 
   alias BasicApi.Models.Camera
 
+  @derive {Jason.Encoder, only: [:id, :name, :email, :enabled]}
   schema "users" do
     field :enabled, :boolean, default: false
     field :name, :string
     field :email, :string
     field :password_hash, :string
+    field :password, :string, virtual: true
 
     timestamps(type: :utc_datetime)
 
@@ -24,8 +26,8 @@ defmodule BasicApi.Models.User do
     |> password_hash()
   end
 
-  defp password_hash(%Ecto.Changeset{valid?: true, changes: %{"password" => password}} = changeset), do:
+  defp password_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset), do:
     put_change(changeset, :password_hash, Bcrypt.hash_pwd_salt(password))
 
-  defp password_hash(%Ecto.Changeset{valid?: true} = changeset), do: changeset
+  defp password_hash(%Ecto.Changeset{valid?: false} = changeset), do: changeset
 end
