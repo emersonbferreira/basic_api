@@ -31,17 +31,17 @@ defmodule BasicApi.Helpers.SeedHelper do
 
   defp generate_user_data(count) do
     time = DateTime.utc_now() |> DateTime.truncate(:second)
-    status = Enum.random([true, false])
-
     Enum.map(1..count, fn i ->
+      enabled = Enum.random([true, false])
+
       %{
         name: "User #{i}",
         email: "user#{i}@example.com",
         password_hash: "password#{i}#{:rand.uniform(100000)}",
-        enabled: status,
+        enabled: enabled,
         inserted_at: time,
-        updated_at: time
-        desabled_at: status == false && time || nil
+        updated_at: time,
+        desabled_at: enabled == false && time || nil
       }
     end)  
   end
