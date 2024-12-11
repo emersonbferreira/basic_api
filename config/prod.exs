@@ -1,5 +1,13 @@
 import Config
 
+#Database
+config :basic_api, BasicApi.Repo,
+  url: System.get_env("DATABASE_URL"),
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+
 # Configures Swoosh API Client
 config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: BasicApi.Finch
 

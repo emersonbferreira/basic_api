@@ -1,6 +1,6 @@
 FROM elixir:1.17-alpine
 
-RUN apk update && apk add --no-cache \
+RUN apk update && apk add \
     build-base \
     openssl-dev \
     nodejs \
@@ -12,11 +12,9 @@ WORKDIR /app
 
 COPY mix.exs mix.lock ./
 
-RUN mix deps.get
-
 COPY . .
 
-RUN apk update && apk add --no-cache libstdc++ postgresql-client
+RUN apk update && apk add libstdc++ postgresql-client
 
 ENV DATABASE_URL=ecto://postgres:postgres@postgres:5432/basic_api_dev
 

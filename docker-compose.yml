@@ -9,6 +9,7 @@ services:
       - "4000:4000"
     environment:
       - DATABASE_URL=ecto://postgres:postgres@postgres:5432/basic_api_dev
+      - SECRET_KEY_BASE=BKqUIk2R1F0Cz0akgxMRFZ32Q4Ej+W//knY/HcqPuWSxijVxcZ8z/H8B2DPI0HcX
       - MIX_ENV=dev
     depends_on:
       - postgres
@@ -18,8 +19,7 @@ services:
       sh -c "
         mix deps.get &&
         mix deps.compile &&
-        mix ecto.create &&
-        mix ecto.migrate &&
+        mix ecto.setup
         mix phx.server
       "
 

@@ -7,7 +7,7 @@ defmodule BasicApi.Auth.UserAuth do
     user = Repo.get_by(User, email: email)
 
     cond do
-      user && Bcrypt.check_pass(user, password) ->
+      user && Bcrypt.verify_pass(user, password) ->
         token = Guardian.generate_token(user)
         {:ok, token}
 

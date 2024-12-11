@@ -28,9 +28,7 @@ config :basic_api, BasicApiWeb.Endpoint,
 
 #Database
 config :basic_api, BasicApi.Repo,
-  url: System.get_env("DATABASE_URL"),
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
+  url: "ecto://postgres:postgres@postgres:5432/basic_api_dev",
   pool_size: 10
 
 # Configures the mailer
