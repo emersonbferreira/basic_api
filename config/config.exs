@@ -11,7 +11,7 @@ config :basic_api,
   ecto_repos: [BasicApi.Repo],
   generators: [timestamp_type: :utc_datetime]
 
-config :basic_api, BasicApi.Models.Guardian,
+config :basic_api, BasicApi.Auth.Guardian,
   issuer: "basic_api",
   secret_key: "hCs8Z6QcQSHrKKIcIap9VXex5MlaJIzrMwpw3k29zAGPjCW4EPJulLY2k4bWmslS"
 

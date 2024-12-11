@@ -6,7 +6,19 @@ defmodule BasicApiWeb.Router do
   end
 
   scope "/api", BasicApiWeb do
-    pipe_through :api
+    pipe_through [:api]
+
+    scope "/users" do
+      resources "/", UserController, except: [:new, :edit]
+    end
+
+    scope "/cameras" do
+      resources "/", CameraController, except: [:new, :edit]
+
+      get "/#{:camera_id}", CameraController, :show
+    end
+
+    post "/login", SessionController, :create
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
