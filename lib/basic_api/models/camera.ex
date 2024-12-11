@@ -9,6 +9,7 @@ defmodule BasicApi.Models.Camera do
     field :name, :string
     field :brand, :string
     field :desabled_at, :utc_datetime, default: nil
+    field :user_id
 
     timestamps(type: :utc_datetime)
 
@@ -19,5 +20,6 @@ defmodule BasicApi.Models.Camera do
     camera
     |> cast(attrs, [:name, :brand, :enabled])
     |> validate_required([:name, :brand, :enabled])
+    |> validate_inclusion(:brand, ["Intelbras", "Hikvision", "Giga", "Vivotek"])
   end
 end
