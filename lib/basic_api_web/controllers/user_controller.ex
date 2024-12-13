@@ -22,6 +22,8 @@ defmodule BasicApiWeb.UserController do
       conn
       |> put_status(:ok)
       |> json(%{message: "Users notified"})
+    else
+      _ -> conn |> put_status(:internal_server_error) |> json(%{message: "Internal server error"})
     end
   end
 end
