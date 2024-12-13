@@ -8,7 +8,6 @@ defmodule BasicApi.Models.Camera do
     field :enabled, :boolean, default: true
     field :name, :string
     field :brand, :string
-    field :disabled_at, :naive_datetime
 
     timestamps()
 

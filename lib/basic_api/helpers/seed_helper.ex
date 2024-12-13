@@ -54,8 +54,7 @@ defmodule BasicApi.Helpers.SeedHelper do
       enabled: status,
       user_id: user.id,
       inserted_at: time,
-      updated_at: time,
-      disabled_at: status == false && time || nil
+      updated_at: time
     }
   end
 end

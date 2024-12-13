@@ -36,7 +36,6 @@ defmodule BasicApiWeb.Schema do
     field :name, :string
     field :brand, :string
     field :enabled, :boolean
-    field :disabled_at, :naive_datetime
     field :inserted_at, :naive_datetime
     field :updated_at, :naive_datetime
   end
