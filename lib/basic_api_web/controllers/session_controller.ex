@@ -16,4 +16,3 @@ defmodule BasicApiWeb.SessionController do
     end
   end
 end
-  
