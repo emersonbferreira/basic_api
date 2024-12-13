@@ -1,4 +1,3 @@
-Skip to content
 # Exercício de Backend 
 
 Nesse exercício, vamos criar uma aplicação Phoenix e implementar algumas funcionalidades nela. A aplicação Phoenix é uma API
@@ -48,7 +47,60 @@ Não esperamos que você implemente autenticação e autorização, mas sua solu
 
 ---
 
+## Iniciando o projeto
+
+   - Basta clonar esse repositório e executar o comando `docker compose up --build`
+      - O comando `docker compose up --build` vai construir o projeto e subir os containers necessários para o funcionamento do projeto.
+      - O build irá rodar a `seed` que irá popular o banco de dados automaticamente.
+      - A aplicação será construída usando o `Dockerfile` e `docker-compose.yml` presente no diretório do projeto.
+      - Os containers necessários para o funcionamento do projeto são o container do banco de dados PostgreSQL e o container do servidor Phoenix.
+   - Após subir os containers, você pode acessar a aplicação pela url `http://localhost:4000`
+   - É usada autenticação JWT para autenticar os usuários e acessar rotas privadas, você pode criar um usuário via POST para rota `http://localhost:4000/users` com o body:
+   ```
+      { "user":
+         {
+            "name": "teste",
+            "password": "teste",
+            "email": "teste@teste"
+         }
+      }
+   ```
+   - Para autenticar o usuário, você pode usar o endpoint `http://localhost:4000/users/login` com o body:
+   ```
+      {
+         "email": "seu_email",
+         "password": "sua_senha"
+      }
+   ```
+   - Você receberá como resposta um token, que deve ser enviado no header `authentication` da request nos endpoins `/cameras` e `notify_users`.
+   - A rota de `/cameras` espera que a query graphql seja passada na url da requisição, exemplo:
+   ```
+      http://localhost:4000/cameras?query={users{id,name,email,cameras(filterBrand:"Hikvision",orderByName:"desc"){id,name,brand}}}
+   ```
+ 
+ ### Endpoints
+
+   - GET /cameras
+      - Retorna uma lista de usuários e suas câmeras ativas.
+      - Endpoint: GET /cameras
+   - POST /notify-users
+      - Envia um e-mail para cada usuário com uma câmera da marca Hikvision.
+      - Endpoint: POST /notify-users
+   - POST /users
+      - Cria um novo usuário.
+      - Endpoint: POST /users
+   - POST /users/login
+      - Autentica o usuário e retorna um token JWT.
+      - Endpoint: POST /users/login
+
+### Testes
+   - Para rodar os arquivos de teste
+      1. entre no container da aplicação executando `docker compose exec app sh`
+      2. no terminal do container execute `MIX_ENV=test mix test`
+
 ## Detalhes da Implementação
-
-Essa seção é para você preencher com quaisquer decisões que tomou que podem ser relevantes. Você também pode mudar esse README para atender suas necessidades.
-
+   - A escolha por usar docker foi feita para facilitar o desenvolvimento e a implantação do projeto, pois permite que o ambiente de desenvolvimento seja replicado facilmente em outros computadores.
+   - Para implementar o seed que popula o banco, optei por criar um módulo que concentra os métodos onde é populado o banco, além disso, utilizei do `insert_all()` do Ecto, pois ignora validações desnecessárias, veja mais [aqui](https://hexdocs.pm/ecto/Ecto.Repo.html#c:insert_all/3).
+   - Na autenticação, optei por usar JWT, pois é um padrão de segurança bem conhecido e rápido de implementar.
+   - Para a api GraphQL, concentrei toda lógica no arquivo `lib/basic_api_web/schema.ex` pois o contexto do desafio se limita a apenas uma rota, entretando poderia ser implementado de forma mais modular.
+   - Utilizei a biblioteca `Mock` para auxiliar no desenvolvimento dos teste unitários.
