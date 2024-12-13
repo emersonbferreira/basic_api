@@ -8,9 +8,9 @@ defmodule BasicApi.Models.Camera do
     field :enabled, :boolean, default: true
     field :name, :string
     field :brand, :string
-    field :desabled_at, :utc_datetime, default: nil
+    field :disabled_at, :naive_datetime
 
-    timestamps(type: :utc_datetime)
+    timestamps()
 
     belongs_to :user, User
   end
