@@ -1,5 +1,5 @@
 defmodule BasicApi.Services.EmailSenderTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   use BasicApi.DataCase
 
   import Mock
@@ -18,15 +18,16 @@ defmodule BasicApi.Services.EmailSenderTest do
       email_2 = build_email(user_2)
 
       with_mock Mailer, [deliver: fn _ -> :ok end] do
-      EmailSender.notify_users()
-      :timer.sleep(500)
+        EmailSender.notify_users()
+        :timer.sleep(500)
 
-      assert called Mailer.deliver(email_1)
-      assert called Mailer.deliver(email_2)
+        assert called Mailer.deliver(email_1)
+        assert called Mailer.deliver(email_2)
+      end
     end
   end
 
-  defp build_email(user) do
+  def build_email(user) do
     Swoosh.Email.new()
     |> Swoosh.Email.to(user.email)
     |> Swoosh.Email.from("no-reply@basicapi.com")
