@@ -12,7 +12,7 @@ defmodule BasicApiWeb.SessionController do
       :error ->
         conn
         |> put_status(:unauthorized)
-        |> json(%{error: "Credenciais inválidas."})
+        |> json(%{error: "Invalid Credentials."})
     end
   end
 end

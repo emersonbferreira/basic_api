@@ -1,8 +1,6 @@
 defmodule BasicApiWeb.UserControllerTest do
   use BasicApiWeb.ConnCase
 
-  import BasicApi.ModelsFixtures
-
   alias BasicApi.Models.User
   alias BasicApi.Repo
 
@@ -12,7 +10,7 @@ defmodule BasicApiWeb.UserControllerTest do
     email: "some@email",
     password: "password"
   }
-  @invalid_attrs %{enabled: nil, name: nil, email: nil, password_hash: nil}
+  @invalid_attrs %{enabled: nil, name: nil, email: nil, password: nil}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
