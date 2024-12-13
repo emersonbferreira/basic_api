@@ -46,9 +46,11 @@ defmodule BasicApi.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:bcrypt_elixir, "~> 3.2.0"},
-      {:guardian, "~> 2.3.2"},
       {:jose, "~> 1.11"},
-      {:joken, "~> 2.6"}
+      {:joken, "~> 2.6"},
+      {:absinthe, "~> 1.7"},
+      {:absinthe_plug, "~> 1.5"},
+      {:absinthe_phoenix, "~> 2.0"}
     ]
   end
 
