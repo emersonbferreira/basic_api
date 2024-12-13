@@ -6,7 +6,8 @@ RUN apk update && apk add \
     nodejs \
     npm \
     git \
-    postgresql-client
+    postgresql-client \
+    entr
 
 WORKDIR /app
 

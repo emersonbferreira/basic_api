@@ -21,7 +21,10 @@ services:
         mix deps.compile &&
         mix ecto.setup
         mix phx.server
+        ls --ignore=deps --ignore=_build --ignore=priv --ignore=assets | entr -r mix phx.server'
       "
+    volumes:
+     - .:/app
 
   postgres:
     image: postgres:15-alpine
