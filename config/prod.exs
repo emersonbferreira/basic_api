@@ -9,10 +9,7 @@ config :basic_api, BasicApi.Repo,
 
 
 # Configures Swoosh API Client
-config :swoosh, api_client: Swoosh.ApiClient.Finch, finch_name: BasicApi.Finch
-
-# Disable Swoosh Local Memory Storage
-config :swoosh, local: false
+config :swoosh, :api_client, false
 
 # Do not print debug messages in production
 config :logger, level: :info
