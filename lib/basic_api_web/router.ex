@@ -5,20 +5,30 @@ defmodule BasicApiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", BasicApiWeb do
-    pipe_through [:api]
+  pipeline :require_auth do
+    plug BasicApiWeb.Plugs.RequireAuth
+  end
 
-    scope "/users" do
-      resources "/", UserController, except: [:new, :edit]
+  scope "/" do
+    scope "/notify_users", BasicApiWeb do
+      pipe_through [:api, :require_auth]
+
+      post "/", UserController, :notify_users
     end
 
     scope "/cameras" do
-      resources "/", CameraController, except: [:new, :edit]
+      pipe_through [:require_auth]
 
-      get "/#{:camera_id}", CameraController, :show
+      get "/", Absinthe.Plug,
+        schema: BasicApiWeb.Schema
     end
 
-    post "/login", SessionController, :create
+    scope "/users", BasicApiWeb do
+      pipe_through [:api]
+
+      post "/create", UserController, :create
+      post "/login", SessionController, :create
+    end
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
