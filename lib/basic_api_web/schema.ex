@@ -24,7 +24,7 @@ defmodule BasicApiWeb.Schema do
     field :inserted_at, :naive_datetime
     field :updated_at, :naive_datetime
     field :cameras, list_of(:camera) do
-      arg :filter_brand, :string
+      arg :filter_brand, :string, default_value: nil
       arg :order_by_name, :string, default_value: "asc"
       resolve &get_cameras_for_user/3
     end
@@ -62,6 +62,14 @@ defmodule BasicApiWeb.Schema do
     cameras = Repo.all(query)
     {:ok, cameras}
   end
+
+  defp get_cameras_for_user(user, %{order_by_name: order_by_name}, _), do:
+    get_cameras_for_user(user, %{filter_brand: nil, order_by_name: order_by_name}, nil)
+
+  defp get_cameras_for_user(user, %{filter_brand: filter_brand}, _), do:
+    get_cameras_for_user(user, %{filter_brand: filter_brand, order_by_name: "asc"}, nil)
+
+  defp get_cameras_for_user(user, _, _), do: get_cameras_for_user(user, %{filter_brand: nil, order_by_name: "asc"}, nil)
 
   defp filter_by_brand(query, nil), do: query
   defp filter_by_brand(query, brand), do: from(c in query, where: c.brand == ^brand)

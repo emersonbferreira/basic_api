@@ -16,7 +16,7 @@ defmodule BasicApi.Models.Camera do
 
   def changeset(camera, attrs) do
     camera
-    |> cast(attrs, [:name, :brand, :enabled])
+    |> cast(attrs, [:name, :brand, :enabled, :user_id])
     |> validate_required([:name, :brand, :enabled])
     |> validate_inclusion(:brand, ["Intelbras", "Hikvision", "Giga", "Vivotek"])
   end
