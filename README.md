@@ -1,39 +1,13 @@
 Skip to content
- 
-Search Gists
-Search...
-All gists
-Back to GitHub
-@lpcinelli
-lpcinelli/exercicio-backend-octos.txt Secret
-Last active 2 months ago • Report abuse
-Code
-Revisions
-6
-Clone this repository at &lt;script src=&quot;https://gist.github.com/lpcinelli/73bd65573507216506aa31e3a378d966.js&quot;&gt;&lt;/script&gt;
-<script src="https://gist.github.com/lpcinelli/73bd65573507216506aa31e3a378d966.js"></script>
-Exercício para o processo seletivo de backend da Octos
-exercicio-backend-octos.txt
 # Exercício de Backend 
 
-Oi!
-
-Se você está lendo isso quer dizer que está na etapa de exercício de código do processo de contratação. Estamos contentes que chegou até aqui e agradecemos sua dedicação.
-
-Nesse exercício, pedimos para criar uma aplicação Phoenix e implementar algumas funcionalidades nela. A aplicação Phoenix é uma API
-
-Geralmente, nós encorajamos os candidatos a fazerem premissas e resolverem do jeito que acharem melhor, desde que essas premisssas e abordagens sejam eplixadas e documentadas. No entanto, se você tiver mais questão, não hesite em nos contactar por email ou whatsapp.
-
-O app não precisa ter nada de HTML, então você pode criar um app com `--no-html` `--no-assets`. Além disso, pense como um programador frontend iria integrar com essa API e como tornar isso fácil.
-
-Observação: nós usamos GraphQL, mas faça com o que tiver mais conhecimento.
+Nesse exercício, vamos criar uma aplicação Phoenix e implementar algumas funcionalidades nela. A aplicação Phoenix é uma API
 
 ## Expectativas
 
 - Deve ser código pronto para produção
   - O código nos mostrará como você entrega coisas para produção e será um reflexo do seu trabalho.
   - Apenas para ser bem claro: Não esperamos que você realmente o implante em algum lugar ou faça um release. Esta é uma declaração sobre a qualidade da solução.
-- Você tem 5 dias para entregar o código. Além disso, se houver algo que você teve que deixar incompleto ou se há uma melhor solução que você implementaria, mas não pôde devido a limitações de tempo pessoais, por favor, tente nos guiar através do seu processo de pensamento ou de quaisquer partes faltantes, utilizando a seção "Detalhes da Implementação" abaixo.
 
 ## O que você vai construir
 
@@ -71,12 +45,6 @@ Não esperamos que você implemente autenticação e autorização, mas sua solu
    - ⚠️ O app não precisa enviar email de fato, então você não precisa necessariamente de acesso à internet para trabalhar no seu desafio.
    - Você pode usar o modo "dev/mailbox" que já vem no phoenix.
    - Endpoint: POST /notify-users
-
-### Quando terminar
-
-- Você pode usar a seção "Detalhes da Implementação" para explicar algumas decisões/limitações da sua implementação.
-- Envie o link do repositório para [lucas@octos.ai](mailto:lucas@octos.ai).
-- Você também pode enviar algum feedback sobre este exercício.
 
 ---
 
