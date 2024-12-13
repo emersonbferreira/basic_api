@@ -26,7 +26,7 @@ defmodule BasicApiWeb.Router do
     scope "/users", BasicApiWeb do
       pipe_through [:api]
 
-      post "/create", UserController, :create
+      post "/", UserController, :create
       post "/login", SessionController, :create
     end
   end

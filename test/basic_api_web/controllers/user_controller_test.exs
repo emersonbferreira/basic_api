@@ -4,12 +4,13 @@ defmodule BasicApiWeb.UserControllerTest do
   import BasicApi.ModelsFixtures
 
   alias BasicApi.Models.User
+  alias BasicApi.Repo
 
   @create_attrs %{
     enabled: true,
     name: "some name",
-    email: "some email",
-    password_hash: "some password_hash"
+    email: "some@email",
+    password: "password"
   }
   @invalid_attrs %{enabled: nil, name: nil, email: nil, password_hash: nil}
 
@@ -19,29 +20,20 @@ defmodule BasicApiWeb.UserControllerTest do
 
   describe "create user" do
     test "renders user when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/api/users", user: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
-
-      conn = get(conn, ~p"/api/users/#{id}")
+      conn = post(conn, ~p"/users", user: @create_attrs)
+      %User{id: user_id} = Repo.all(User) |> List.last()
 
       assert %{
-               "id" => ^id,
-               "email" => "some email",
-               "enabled" => true,
-               "name" => "some name",
-               "password_hash" => "some password_hash"
-             } = json_response(conn, 200)["data"]
+         "id" => ^user_id,
+         "email" => "some@email",
+         "enabled" => true,
+         "name" => "some name"
+        } = json_response(conn, 201)["user"]
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/api/users", user: @invalid_attrs)
+      conn = post(conn, ~p"/users", user: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
-  end
-
-
-  defp create_user(_) do
-    user = user_fixture()
-    %{user: user}
   end
 end
