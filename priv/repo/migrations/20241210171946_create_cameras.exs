@@ -6,10 +6,10 @@ defmodule BasicApi.Repo.Migrations.CreateCameras do
       add :name, :string
       add :brand, :string
       add :enabled, :boolean, default: true
-      add :desabled_at, :utc_datetime, default: nil
+      add :disabled_at, :naive_datetime
       add :user_id, references(:users)
 
-      timestamps(type: :utc_datetime)
+      timestamps()
     end
   end
 end

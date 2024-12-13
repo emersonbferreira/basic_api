@@ -30,7 +30,7 @@ defmodule BasicApi.Helpers.SeedHelper do
   end
 
   defp generate_user_data(count) do
-    time = DateTime.utc_now() |> DateTime.truncate(:second)
+    time = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
     Enum.map(1..count, fn i ->
       enabled = Enum.random([true, false])
 
@@ -41,13 +41,13 @@ defmodule BasicApi.Helpers.SeedHelper do
         enabled: enabled,
         inserted_at: time,
         updated_at: time,
-        desabled_at: enabled == false && time || nil
+        disabled_at: enabled == false && time || nil
       }
     end)  
   end
   
   defp generate_camera(user, status) do
-    time = DateTime.utc_now() |> DateTime.truncate(:second)
+    time = NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
     %{
       name: "Camera-#{:rand.uniform(1000)}",
       brand: Enum.random(@camera_brands),
@@ -55,7 +55,7 @@ defmodule BasicApi.Helpers.SeedHelper do
       user_id: user.id,
       inserted_at: time,
       updated_at: time,
-      desabled_at: status == false && time || nil
+      disabled_at: status == false && time || nil
     }
   end
 end

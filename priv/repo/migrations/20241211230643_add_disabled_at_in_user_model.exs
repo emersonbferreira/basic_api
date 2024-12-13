@@ -3,7 +3,7 @@ defmodule BasicApi.Repo.Migrations.AddDesabledAtInUserModel do
 
   def change do
     alter table(:users) do
-      add :desabled_at, :utc_datetime
+      add :disabled_at, :naive_datetime
     end
   end
 end

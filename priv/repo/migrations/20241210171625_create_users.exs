@@ -8,7 +8,7 @@ defmodule BasicApi.Repo.Migrations.CreateUsers do
       add :password_hash, :string
       add :enabled, :boolean, default: true
 
-      timestamps(type: :utc_datetime)
+      timestamps()
     end
     create unique_index(:users, [:email])
   end
