@@ -50,7 +50,8 @@ defmodule BasicApi.MixProject do
       {:joken, "~> 2.6"},
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
-      {:absinthe_phoenix, "~> 2.0"}
+      {:absinthe_phoenix, "~> 2.0"},
+      {:mock, "~> 0.3.8", only: :test}
     ]
   end
 
